@@ -86,9 +86,10 @@ const Logged = () => {
             await signInWithEmailAndPassword(auth, email, password)
             .then(async(user) => {
                 console.log("user logged in successfully", user);
+                navigate("/");
                const mail=email.split("@")[0]
                await setDoc(doc(document),"channel",mail)
-                navigate("/");
+                
             })
             .catch((err) => {
                 setEmail("");
@@ -109,9 +110,8 @@ const Logged = () => {
                     alert("try after "+(60-td)+" minutes")
                 }
                 else{
-                    alert(err)
-                }
-                
+                    console.log(err)
+                }     
             });
         }
     }
