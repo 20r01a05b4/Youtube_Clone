@@ -110,7 +110,7 @@ const Logged = () => {
                     alert("try after "+(60-td)+" minutes")
                 }
                 else{
-                    console.log(err)
+                    console.log(err) 
                 }     
             });
         }
