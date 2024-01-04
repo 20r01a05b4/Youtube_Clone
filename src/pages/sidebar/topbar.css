@@ -1,0 +1,27 @@
+.topbar{
+display:flex;
+height:35px;
+width:100%;
+position:relative;
+top:3.8rem;
+align-items:center;
+left:70px;
+position: fixed;  
+overflow: scroll;
+z-index: 1000;
+background-color: black;
+}
+.topbar  h1{
+    margin-left: 89px;
+    font-size: 15px;
+    background-color: rgb(28,28,28);
+    padding:5px;
+    color:white;
+    border-radius: 8px;
+} 
+
+@media(max-width:800px){
+    .topbar{
+        left:16px;
+    }
+}

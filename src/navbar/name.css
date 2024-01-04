@@ -1,0 +1,22 @@
+.name_contanier{
+    display:flex;
+    width:40px;
+    height:2.5rem;
+    background-color:green;
+    align-items: center;
+    justify-content: center;
+   /* margin-left:30px;*/
+    border-radius:50%;
+    cursor: pointer;
+}
+.name_logo{
+    color:white;
+    font-size: 1.7rem;
+    font-style: bold;  
+}
+
+@media (max-width: 600px) {
+    .name_container {
+      width: 2.5rem; /* Adjust the width for smaller screens */
+    }
+  }

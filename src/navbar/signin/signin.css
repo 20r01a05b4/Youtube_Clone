@@ -1,0 +1,28 @@
+.c{
+    color:white;
+    
+}
+.sign_contanier{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width:max-content;
+    height:2.3rem;
+    margin-left:110px;
+    cursor:pointer;
+    border:1px solid white;
+    border-radius:20px 20px 20px 20px;
+}
+.signin-icon {
+    font-size: 18px;
+    color: blue;
+    margin-right:15px;
+    margin-left:12px;
+}
+.signin_heading{
+    color:blue;
+    margin-right:12px;
+}
+.sign_contanier:hover{
+    background-color: gray;
+}

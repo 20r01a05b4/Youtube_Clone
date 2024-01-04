@@ -1,0 +1,40 @@
+.login_contanier{
+    background-color: white;
+    width:100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login_inner_contanier{
+ width: 35%;
+ min-height: auto;
+  background-color: #ffffff; 
+  border: 1px solid #000000;
+  text-align: center;
+  padding: 20px; 
+  box-sizing: border-box;
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+.login_email,.login_password,.login_submit_button{
+    display:flex;
+    flex-direction:column;
+}
+
+.login_inner_contanier label{
+    font-size: 23px;
+    font-family: 'Times New Roman', serif;
+}
+.login_inner_contanier input{
+    font-size: 20px;
+    font-family: 'Courier New', monospace;
+}
+
+.star{
+    color: red;
+    margin-left:4px;
+}

@@ -1,0 +1,36 @@
+.channel_contanier{
+    background-color: rgb(28,28,28);
+    height:100vh;
+    width:50%;
+    position:fixed;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+}
+
+.profile{
+    background-color:blue;
+    border-radius:70px;
+    width:150px;
+    height:150px;
+}
+
+.appear_heading{
+    margin-left:10px;
+    color:white;
+    margin-bottom: 80px;
+}
+
+.total{
+    background-color: rgb(28,28,28);
+    height:100vh;
+    width:50%;
+    overflow-y: scroll;
+}
+
+.select_heading{
+    margin-bottom:10px;
+    color:blue
+}

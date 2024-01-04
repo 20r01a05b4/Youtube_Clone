@@ -1,0 +1,12 @@
+.bell_contanier{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width:40px;
+   height:2.5rem;
+   margin-left:10px;
+   cursor: pointer;
+}
+.bell_icon{
+    color:white;
+}

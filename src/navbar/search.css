@@ -1,0 +1,56 @@
+.s_contanier{
+    display:flex;
+    align-items: center;
+    margin-left:21vh;
+    height:2rem;
+    width:90vh;
+    
+}
+/*input box designing */
+.s_input{
+    height:2.3rem;
+    width:100%;
+    border-radius: 20px 0 0 20px;
+    border:1px solid white;
+    background-color: rgba(0, 0, 0, 0.855);
+}
+.s_input:hover,.s_input:focus{
+border:2px solid lightblue;
+}
+/*icon box designing*/
+.ic_div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:gray;
+    height:2.5rem;
+    width:40px;
+    border:1px solid white;
+    border-radius:0 20px 20px 0;
+}
+
+/*icon google */
+.icon_s{
+    color:white;
+}
+.inp_div{
+    width: 89%;
+}
+.ic_div{
+    width:60px;
+}
+
+
+/*media queries */
+@media(max-width:800px){
+   .s_contanier{
+    margin-left:10vh;
+    width:75vh;
+   } 
+}
+@media(max-width:600px){
+    .s_contanier{
+     margin-left:5vh;
+     width:60vh;
+    } 
+ }
