@@ -1,7 +1,7 @@
 .channel_contanier{
     background-color: rgb(28,28,28);
-    height:100vh;
-    width:50%;
+    height:90vh;
+    width:60%;
     position:fixed;
     display: flex;
     align-items: center;
@@ -15,22 +15,58 @@
     border-radius:70px;
     width:150px;
     height:150px;
+    cursor: pointer;
 }
 
 .appear_heading{
     margin-left:10px;
     color:white;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
 }
 
-.total{
-    background-color: rgb(28,28,28);
-    height:100vh;
-    width:50%;
-    overflow-y: scroll;
-}
 
 .select_heading{
     margin-bottom:10px;
-    color:blue
+    color: #6495ed;
+    font-size: 20px;
+    margin-left: 16px;
+    cursor: pointer;
+}
+
+
+.name_input {
+    border: 1px solid rgb(28, 28, 28);
+    background-color: rgb(28, 28, 28);
+    width:90%;
+    height:55%;
+    margin-left: 10px;
+    color: azure;
+    font-family: sans-serif;
+
+  }
+  
+  .name_input:hover {
+    border-color: transparent;
+  }
+  
+  .name_outer {
+    border: 1px solid white;
+    width: 60%;
+    height: 60px;
+    border-radius: 5px;
+  }
+  
+  button{
+    background-color: transparent;
+    border:transparent;
+    margin-left: 20px;
+  }
+  .channel_btns{
+    margin-left:260px;
+  }
+
+.select_change{
+    color: #6495ed;
+    margin-left: 26px;
+    cursor: pointer;
 }

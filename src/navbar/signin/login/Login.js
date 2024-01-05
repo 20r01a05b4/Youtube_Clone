@@ -71,6 +71,7 @@ const Logged = () => {
           
         return rt;
     }
+      
     /*handling submit function */
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -84,18 +85,14 @@ const Logged = () => {
         }
         else{
             await signInWithEmailAndPassword(auth, email, password)
-            .then(async(user) => {
-                console.log("user logged in successfully", user);
+            .then((user) => {
                 navigate("/");
-               const mail=email.split("@")[0]
-               await setDoc(doc(document),"channel",mail)
-                
             })
             .catch((err) => {
                 setEmail("");
                 setPassword("")
                 setCount(count + 1);
-                console.log(err)
+               alert("credentials are wrong")
                 if (count === 3) {
                     sendEmail();
                     alert("3 attempts completed");
