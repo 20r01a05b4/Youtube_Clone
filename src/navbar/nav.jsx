@@ -8,21 +8,50 @@ import Bell from "./bell";
 import Name from "./name";
 import { useState } from "react";
 import Signin from "./signin/Signin";
+import { useEffect } from "react";
+import app from "../backend/Firebase";
+import {getAuth,onAuthStateChanged } from "firebase/auth";
+
 const Navbar=()=>{
     const [visible,setVisible]=useState(false)
-    //const [user,setUser]=useState(false)
-    const user=localStorage.getItem("user")
-    const handleClick = (event) => {
+    const [user,setUser]=useState(false)
+    const a=getAuth(app)
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(a, (user) => {
+          if (user) {
+            setUser(true);
+          } else {
+            sessionStorage.removeItem("user");
+            setUser(null);
+          }
+        });
+        return () => unsubscribe();
+      }, [a]);
+    
+      const handleClick = (event) => {
+       
         const sidebar = document.querySelector(".sidebar");
-        const aside = document.querySelector(".side_contanier");
+        const aside = document.querySelector(".side_container");
         const newVisible = !visible;
         setVisible(newVisible);
-        sidebar.style.display = newVisible ? "block" : "none";
         
-        if (aside) {
-            aside.style.display = newVisible ? "none" : "block";
+        if(sidebar){
+            sidebar.style.display = newVisible ? "block" : "none";
         }
-    };
+        if (aside && sidebar) {
+          aside.style.display = newVisible ? "none" : "block";
+        }
+        console.log(aside +"   "+ sidebar)
+        if(!sidebar && aside){
+            console.log("no sidebar ")
+            aside.style.display = newVisible ? "block" : "none";
+        }
+      
+      }; 
+    
+    
+    
     
 return(
     <div className="contanier">

@@ -1,9 +1,11 @@
 import "./signuppage.css"
+import React from "react"
 import { useNavigate } from "react-router-dom"
 import app from "../../../backend/Firebase"
 import { getAuth } from "firebase/auth"
 import { useState} from "react"
 import { createUserWithEmailAndPassword } from "firebase/auth"
+import { getDatabase,ref,onValue, update} from "firebase/database"
 
 const SignupPage=()=>{
   const navi=useNavigate()
@@ -11,10 +13,11 @@ const SignupPage=()=>{
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
   const [conform,setConform]=useState("")
+  const [channel,setChannel]=useState(null)
    
   const handleEmail=(e)=>{
     setEmail(e.target.value)
-    console.log(email)
+  
   }
 
   const handlePassword=(e)=>{
@@ -24,6 +27,36 @@ const SignupPage=()=>{
   const handleConform=(e)=>{
     setConform(e.target.value)
   }
+
+  /* channel checker function */
+  const channelChecker=async(user)=>{
+    await new Promise((resolve)=>{
+      const db=getDatabase(app);
+      const refer=ref(db,user+"/channel");
+      onValue(refer,(snapshot)=>{
+        const data=snapshot.val();
+        if(data){
+          console.log(data)
+          setChannel(data)
+          localStorage.setItem("channel",true)
+        }
+        else{
+          localStorage.setItem("channel",false);
+        }
+      })
+    })
+  }
+
+  /* user email details add */
+  const detailsadd=async(user_name)=>{
+    const user=user_name.split("@")[0]
+    await update(ref(getDatabase(app),"users/"+user), {
+      time:new Date()
+    });
+     
+  }
+
+
   const signinHandler=async(e)=>{
       e.preventDefault()
       if(password.length<=8){
@@ -57,11 +90,14 @@ const SignupPage=()=>{
           alert("passwords are not matching")
           setPassword("")
           setConform("")
-      }
+          return;
+      } 
 
       await createUserWithEmailAndPassword(auth,email,password).then((user)=>{
-          console.log("some user has logged in"+user);
-          navi("/")
+          channelChecker(email.split("@")[0])
+          detailsadd(email);
+          navi("/",{channel})
+          
         }).catch((e) => {
           const err = e.code;
           if (err === "auth/email-already-in-use") {
@@ -77,6 +113,7 @@ const SignupPage=()=>{
             setConform("")
           }
         });
+        return;
   }
 
   const logHandler=()=>{

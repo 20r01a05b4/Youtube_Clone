@@ -1,0 +1,140 @@
+.commentContanier{
+
+width:98%;
+
+margin-top: 23px;
+
+}
+
+.commentcount{
+    display: flex;
+    color:white;
+    align-items: center;
+    height:55px;
+    border-top: 1px solid white;  
+}
+
+.commentdata{
+    margin-right: 50px;
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.sortby{
+    font-size: 23px;
+    margin-left:10px;
+}
+
+.namedisplay{
+   width:45px;
+   height:40px;
+   border-radius: 50%; 
+  background-color:green;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.AddCommentContainer{
+    width:100%;
+    display: flex;
+   
+}
+
+.commentInput{
+    outline: none;
+    border: none;
+    background-color: black;
+    margin-left: 15px;
+    border-bottom: 3px solid white;
+    width: 100%;
+    color: white;
+    font-size: 18px;
+    resize:none;
+    margin-top: 30px;
+    height:max-content;
+}
+
+.cancelcreate{
+    display: flex;
+    justify-content:flex-end;
+    margin-right: 50px;
+}
+
+.createText{
+    cursor: pointer;
+    width:100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:35px;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.cancelText{
+    cursor: pointer;
+    width:80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:35px;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.cancelText:hover{
+    background-color: gray;
+}
+
+
+
+/*video total users comment */
+
+.userComments{
+    display: flex;
+    width:100%;
+}
+
+.username{
+    margin-right: 20px;
+    width:43px;
+    height:40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-top: 20px;
+}
+
+
+.commentInfo{
+
+    width: 100%;
+    min-height:60px;
+    height:max-content;
+    overflow: hidden;
+    color:white;
+    transition: max-height 0.3s ease;
+    border-radius: 5px;
+
+    word-spacing: 3px;
+ margin: 0;
+padding: 0;  
+
+}
+
+.othercomment{
+    height:max-content;
+    position: relative;
+    bottom:18px;
+    font-size: 20px;
+}
+
+
+
+.likereply{
+    color:white;
+    display: flex;
+ 
+}

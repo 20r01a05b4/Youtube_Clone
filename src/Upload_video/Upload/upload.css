@@ -1,0 +1,141 @@
+.upload_outercontanier{
+  display:flex;
+  height:max-content;
+  align-items: center;
+  justify-content: center;
+  border:1px solid black;
+}
+.upload_innercontanier { 
+    background-color:lightgray;
+    height:max-content;
+    width:75vw;
+    border-radius:5px 5px 5px 5px; 
+    border:1px solid black;
+    margin-top: 50px;
+  }
+
+  .uploadTopContanier{
+    background-color:white;
+    margin-top:0px;
+    display: flex;
+    justify-content: space-between;
+    height:58px;
+    border-bottom:0.5px solid white;
+   
+  }
+  .wrong{
+    margin-right:35px;
+  }
+
+  .drag_contanier{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:100px;
+    flex-direction: column;
+    border:2px solid black;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-right: 50px;
+    margin-left: 50px;
+    
+  }
+
+  .logo_contanier{
+    width:130px;
+    height:130px;
+    background-color:gray;
+    border-radius:50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer;  
+  }
+  
+  .select_file_btn{
+    width:130px;
+    height:35px;
+    background-color:orangered;
+    border-radius: 5px;
+    cursor:pointer;
+  }
+
+  .create_cancel{
+    display:flex;
+    flex-direction:row;
+    margin-left:200px;
+    font-size: large;
+  }
+
+  .create_cancel p{
+    margin-left:100px;
+    color:white;
+    cursor:pointer;
+    margin-bottom: 100px;
+  }
+
+
+.title_contanier,.description_contanier,.access_controler{
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+  margin-right:50px;
+  border:2px solid black;
+  border-radius:3px;
+}
+.title_label,.description_label{
+  color:red;
+  padding-top: 5px;
+}
+
+.title_input,.description_input{
+  width:98%;
+  border-right:1px solid lightskyblue;
+  border: 1px solid rgb(28, 28, 28);
+  background-color: white;
+  padding: 8px; 
+  outline: none;
+  height:50px;
+  font-size: 17px;
+}
+
+.description_input{
+padding-bottom: 250px;
+background-color:whitesmoke;
+overflow-wrap: break-word;
+word-wrap: break-word;
+line-height: 2; 
+overflow-y:hidden;
+overflow-x:hidden;
+resize: none;
+}
+
+.access_controler {
+  padding-bottom: 30px;
+}
+
+.access_controler label{
+  margin-top: 10px;
+}
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .title_contanier,
+  .description_contanier {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .create_cancel{
+    margin-left:10px ;
+  }
+}
+
+@media (max-width:324px){
+  .create_cancel p{
+    margin-left: 10px;
+  }
+}

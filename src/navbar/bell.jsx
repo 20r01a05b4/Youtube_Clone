@@ -1,4 +1,5 @@
 import { IoMdNotificationsOutline } from "react-icons/io";
+import React from "react";
 import "./bell.css"
 const Bell=()=>{
     return(

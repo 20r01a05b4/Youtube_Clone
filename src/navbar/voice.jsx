@@ -1,4 +1,5 @@
 import "./voice.css"
+import React from "react";
 import { FaMicrophone } from 'react-icons/fa';
 const Voice=()=>{
     return(

@@ -56,3 +56,12 @@
    text-align: center;
    cursor:pointer;
 }
+
+
+/*upload and channel component diplaying */
+
+.UploadComponent {
+    width: 80vw; /* Changed from vh to vw */
+    height: 90vh;
+  }
+  

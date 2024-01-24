@@ -1,10 +1,12 @@
 import "./Login.css";
+import React from "react";
 import app from "../../../backend/Firebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState} from "react";
 import { useNavigate } from "react-router-dom";
 import emailjs from '@emailjs/browser';
 import {setDoc,doc, getFirestore, getDoc} from 'firebase/firestore'
+import { getDatabase,ref,onValue } from "firebase/database";
 
 const Logged = () => {
     const auth = getAuth(app);
@@ -26,20 +28,21 @@ const Logged = () => {
         setPassword(e.target.value);
     }
   /* sending email function */
-    const sendEmail = () => {
-        const obj = {
-            "from_name": email,
-            "message":msg
-        };
+    /* sending email function */
+const sendEmail = async () => {
+    const obj = {
+        "from_name": email,
+        "message": msg
+    };
 
-        emailjs.send("service_7i8s6ak", "template_pomlbn6", obj, "JPOSvQKJ0kVtpleyO")
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => { 
-                console.log("error", err);
-            });
+    try {
+        const res = await emailjs.send("service_7i8s6ak", "template_pomlbn6", obj, "JPOSvQKJ0kVtpleyO");
+        console.log(res);
+    } catch (err) {
+        console.error("Error sending email", err);
     }
+};
+
     /* block the user for 1 hour function*/
    const blockContact=()=>{
         const mail=email.split("@")[0]
@@ -52,51 +55,103 @@ const Logged = () => {
     }
 
     /* checking time difference is 1 hour or not function */
-    const timeDifference=async()=>{
-        const mail=email.split("@")[0]
-         const document=doc(database,"blocked",mail)
-        await getDoc(document).then((user)=>{setTime(user.data());}).catch((err)=>{console.log(err)})
-        if(typeof times==="undefined"){
-            return times;
+    const timeDifference = async () => {
+        const mail = email.split("@")[0];
+        const document = doc(database, "blocked", mail);
+    
+        try {
+            const user = await getDoc(document);
+            setTime(user.data());
+    
+            if (typeof times === "undefined" || times === "undefined") {
+                return undefined;
+            }
+    
+            const current_time_seconds = times?.time?.seconds;
+            if (current_time_seconds === undefined) {
+                return undefined;
+            }
+    
+            const ptime = current_time_seconds;
+            const ctime = Math.floor(new Date().getTime() / 1000); 
+            const dtime = (ctime - ptime) / 60; 
+            const rt = Math.ceil(dtime);
+             
+            return rt;
+        } catch (err) {
+            console.log(err);
+            return undefined;
         }
-        if(times==="undefined"){
-            return times;
-        }
-        console.log(times)
-        const current_time= times
-        const ptime=current_time
-        const ctime=new Date()
-        const  dtime=(ctime-ptime)/ (1000 * 60)  
-        const rt=Math.ceil(dtime)
-          
-        return rt;
+    };
+    
+    /* chanel checker function */
+    const channelChecker=async(user)=>{
+        await new Promise((resolve)=>{
+          const db=getDatabase(app);
+          const refer=ref(db,user+"/channel");
+          onValue(refer,(snapshot)=>{
+            const data=snapshot.val();
+            if(data){
+              console.log(data)
+            
+              localStorage.setItem("channel",true);
+            }
+            else{
+              localStorage.setItem("channel",false);
+            }
+          })
+        })
+      }
+    /*email already present */
+    const emailChecker=async(user)=>{
+        await new Promise((resolve)=>{
+            onValue(ref(getDatabase(app),"users/"+user),(snap)=>{
+             const val=snap.val();
+             if(val){
+                resolve(false);
+             }
+             else{
+                resolve(true);
+             }
+            })
+        })
     }
       
     /*handling submit function */
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const td=await timeDifference();
-        
+        const td=await timeDifference(); 
         if((td>=0)&&(td<=60 )){
             alert("try after "+(60-td)+" minutes")
             setEmail("")
             setPassword("")
-            console.log("you can login after "+(60-td));
+            return;
+          
         }
         else{
             await signInWithEmailAndPassword(auth, email, password)
             .then((user) => {
+                channelChecker(email.split("@")[0]);
                 navigate("/");
             })
             .catch((err) => {
-                setEmail("");
+                if(emailChecker(email.split("@")[0])){
+                     alert("email id  not found");
+                     setEmail("");
+                     setPassword("")
+                     return;
+
+                }
+                console.log(err.code);
+                setEmail("")
                 setPassword("")
-                setCount(count + 1);
+                setCount((count) => count + 1);
+                console.log(count)
                alert("credentials are wrong")
                 if (count === 3) {
                     sendEmail();
                     alert("3 attempts completed");
-                }
+                     }
                 else if(count===5){
                     setMsg("You crossed the number of attempts.so you are tempraroily blocked for one hour")
                     sendEmail();

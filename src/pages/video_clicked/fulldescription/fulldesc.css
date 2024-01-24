@@ -1,0 +1,29 @@
+.descriptiondisplay {
+    background-color:rgb(70,70,70);
+    width: 98%;
+    min-height:60px;
+    height:max-content;
+    overflow: hidden;
+    color:white;
+    transition: max-height 0.3s ease;
+    border-radius: 5px;
+    margin-top: 3px;
+    word-spacing: 3px;
+  }
+
+  .descpara{
+   
+    margin:10px; 
+  }
+  
+
+  
+  .read-more {
+    color:lightgreen;
+    cursor: pointer;
+    position: absolute;
+    border-radius: 5px;
+    font-size: 20px;
+   
+  }
+  

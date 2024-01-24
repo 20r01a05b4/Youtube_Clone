@@ -1,0 +1,30 @@
+.AllVideos{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.innerVideo{
+    height:130px;
+ 
+    width: 233px;
+
+}
+
+.flex_box{
+    display: flex;
+
+}
+
+.videoinfo{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    width:300px;
+
+}
+
+.videoinfo p{
+    margin: 0px;
+    color: grey;
+}
