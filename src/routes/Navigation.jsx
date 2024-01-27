@@ -34,7 +34,7 @@ const Navigation = () => {
         <Route path="/videoclicked/:videoId" element={<VideoClicked />} />
         {user ? (
           <>
-             {/* <Route path="/uploadvideo" element={<Upload />} />  */}
+             <Route path="/uploadvideo" element={<Upload />} />  
               <Route path="/createchannel" element={<Channel />} />
           </>
         ) : (

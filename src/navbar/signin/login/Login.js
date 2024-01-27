@@ -8,6 +8,8 @@ import emailjs from '@emailjs/browser';
 import {setDoc,doc, getFirestore, getDoc} from 'firebase/firestore'
 import { getDatabase,ref,onValue } from "firebase/database";
 
+
+
 const Logged = () => {
     const auth = getAuth(app);
     const [email, setEmail] = useState("");
@@ -17,6 +19,8 @@ const Logged = () => {
     const [count, setCount] = useState(0);
     const database=getFirestore(app);
     const [times,setTime]=useState("undefined")
+    const [emailPresent,setEmailPresent]=useState(true);
+   
    
     const handleEmail = (e) => {
         e.preventDefault();
@@ -92,7 +96,7 @@ const sendEmail = async () => {
           onValue(refer,(snapshot)=>{
             const data=snapshot.val();
             if(data){
-              console.log(data)
+
             
               localStorage.setItem("channel",true);
             }
@@ -103,23 +107,29 @@ const sendEmail = async () => {
         })
       }
     /*email already present */
-    const emailChecker=async(user)=>{
-        await new Promise((resolve)=>{
-            onValue(ref(getDatabase(app),"users/"+user),(snap)=>{
-             const val=snap.val();
-             if(val){
-                resolve(false);
-             }
-             else{
-                resolve(true);
-             }
-            })
-        })
-    }
+    const emailChecker = async (user) => {
+        return new Promise((resolve) => {
+          const dbRef = ref(getDatabase(app), "users");
+          
+          onValue(dbRef, (snapshot) => {
+            const val = snapshot.val();
+      
+            if (val && val.hasOwnProperty(user)) {
+              setEmailPresent(true);
+            } else {
+              setEmailPresent(false);
+            }
+      
+            resolve();
+          });
+        });
+      };
+      
       
     /*handling submit function */
     const handleSubmit = async (e) => {
         e.preventDefault();
+        await emailChecker(email.split("@")[0]);
         const td=await timeDifference(); 
         if((td>=0)&&(td<=60 )){
             alert("try after "+(60-td)+" minutes")
@@ -134,25 +144,25 @@ const sendEmail = async () => {
                 channelChecker(email.split("@")[0]);
                 navigate("/");
             })
-            .catch((err) => {
-                if(emailChecker(email.split("@")[0])){
+            .catch(async(err) => {
+                if(!emailPresent){
                      alert("email id  not found");
                      setEmail("");
                      setPassword("")
                      return;
 
                 }
-                console.log(err.code);
+             
                 setEmail("")
                 setPassword("")
                 setCount((count) => count + 1);
                 console.log(count)
                alert("credentials are wrong")
-                if (count === 3) {
+                if (count === 2) {
                     sendEmail();
                     alert("3 attempts completed");
                      }
-                else if(count===5){
+                else if(count===4){
                     setMsg("You crossed the number of attempts.so you are tempraroily blocked for one hour")
                     sendEmail();
                    blockContact();
@@ -182,9 +192,9 @@ const sendEmail = async () => {
                     <input type="password" className="password_input" value={password} onChange={handlePass} required />
                 </div><br></br><br></br>
                 <div className="login_submit_button">
-                    <input className="btn" type="submit"></input>
+                    <input className="btn" style={{"color":"red"}} type="submit"></input>
                 </div><br></br>
-                <p>Do not have an account?<button onClick={signHandler}>click here for signup</button></p>
+                <p style={{"color":"white"}}>Do not have an account?<button onClick={signHandler} style={{"color":"blue"}}>click here for signup</button></p>
             </form>
             
         </div>

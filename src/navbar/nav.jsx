@@ -30,7 +30,7 @@ const Navbar=()=>{
       }, [a]);
     
       const handleClick = (event) => {
-       
+        event.preventDefault();
         const sidebar = document.querySelector(".sidebar");
         const aside = document.querySelector(".side_container");
         const newVisible = !visible;

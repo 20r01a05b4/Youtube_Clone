@@ -135,10 +135,10 @@ return(
       <input type="password" className="confirm_input"required maxLength="30" value={conform} onChange={handleConform}></input>
     </div><br></br>
     <div className="submit_button">
-      <input type="submit"></input>
+      <input type="submit" style={{"backgroundColor":"orange"}}></input>
     </div>
-    <p>already have an account?<button className="log_button"
-    onClick={logHandler}>click here to login</button></p>
+    <p style={{"color":"white"}}>already have an account?<button className="log_button"
+    onClick={logHandler} style={{"color":"blue"}}>click here to login</button></p>
   </form>
 </div>
 )
